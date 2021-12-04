@@ -1,0 +1,138 @@
+import random
+
+from gtts import gTTS
+import os
+import time
+from playsound import playsound
+from datetime import datetime
+import certifi
+import urllib3
+import requests
+import math
+from requests_html import HTMLSession
+
+http = urllib3.PoolManager(
+    cert_reqs='CERT_NONE',
+     ca_certs=certifi.where())
+
+
+user_api = 'current weather data'
+location = "Lyon"
+complete_api_link = "https://api.openweathermap.org/data/2.5/weather?q="+location+"&appid="+"e2324071fe3a774a11ec34a049def0e7"
+api_link = requests.get(complete_api_link)
+api_data = api_link.json()
+weather_desc = api_data['weather'][0]['description']
+temp_city = ((api_data['main']['temp']) - 273.15)
+print (temp_city)
+temparrondie = int(temp_city)
+descrimeteo = str(weather_desc)
+
+
+
+
+
+
+language = 'fr'
+playlist = ["dumalatedire.mp3","alarm.mp3","lofi.mp3","freeze-corleone-667-feat-central-cee-polemique.mp3","la-chevauchee-des-walkyries.mp3","s-morose.mp3","shingeki-no-kyojin-attack-on-titan-ost-vogel-im-kafig-eng-subs.mp3","three-lions-footballs-coming-home-official-video.mp3","y-2-diamants.mp3","kaaris-goulag-clip-officiel.mp3","allah-akbar-remix.mp3","if-the-weeknd-made-lofi-hip-hop-radio.mp3"]
+Numberforchoose = random.randint(0,11)
+TextSpeech = gTTS(text="Seigneur Gaspard, il est  "+str(datetime.today().hour)+ "heures."+str(datetime.today().minute) +"Je sais que vous aimeriez profiter un peu plus de votre lit douillet mais il est l'heure de se lever. Hop hop hop lève toi car c'est pas en procrastinant que tu vas devenir multimilliardaire  je souhaite à son excellence une très bonne journée ",lang=language,slow=False)
+TextSpeech.save("message.mp3")
+
+strtemp = str(temparrondie)
+strfinale = "Aujourd'hui il fait " +strtemp +"degrès celcus à " +location+ " et le temps actuel est "+descrimeteo
+SecondTextSpeech = gTTS(text=strfinale,lang=language,slow=False)
+SecondTextSpeech.save("temp.mp3")
+#playsound("temp.mp3")
+
+mois = ["janvier","février","mars","avril","mai","juin","juillet","aout","septembre","octobre","novembre","décembre"]
+jours =["lundi","mardi","mercredi","jeudi","vendredi","samedi","dimanche"]
+Chancla = jours[datetime.today().weekday()]
+ChanclaB= mois[(datetime.today().month)-1]
+FourTextSpeech = gTTS(text= "Nous sommes le " +Chancla +str(datetime.today().day)+ ChanclaB+str(datetime.today().year),lang=language,slow=False)
+FourTextSpeech.save("date.mp3")
+alarmtime = "00:36"
+alarmb = "18:32"
+daysalarma = [1,1,1,0,0,1,1]
+daysalarmb = [0,1,0,1,1,0,0]
+day = datetime.today().weekday()
+print (daysalarma[day])
+print (daysalarmb[day])
+print(datetime.today().weekday())
+while True:
+    lcltime = datetime.now().strftime("%H:%M")
+    if lcltime == alarmtime and daysalarma[day] == 1:
+        playsound("message.mp3")
+        playsound("date.mp3")
+        playsound("temp.mp3")
+        if Numberforchoose ==0:
+            MessageMusic1 = gTTS(text=" Aujourd'hui je suis de bonne humeur je vais vous mettre un son doux et mélodique pour le réveil remerciez votre ia adorée",lang=language, slow=False)
+            MessageMusic1.save("messagemusique.mp3")
+            playsound("messagemusique.mp3")
+        if Numberforchoose==1:
+            MessageMusic2 = gTTS(text=" Je vais vous mettre Une musique, bien communiste qui donne envie d'aller conquérir l'ukraine et fumer le bloc de l'ouest",lang=language, slow=False)
+            MessageMusic2.save("messagemusique2.mp3")
+            playsound("messagemusique2.mp3")
+        if Numberforchoose ==2:
+            MessageMusic3 = gTTS(
+                text=" Je vous met une musique douce pour bien commencer la journée",lang=language, slow=False)
+            MessageMusic3.save("messagemusique3.mp3")
+            playsound("messagemusique3.mp3")
+        if Numberforchoose == 3:
+            MessageMusic4 = gTTS(
+                text="Je vous met Un petit peu de drill dès le matin ne fait de mal à personne EKIP", lang=language, slow=False)
+            MessageMusic4.save("messagemusique4.mp3")
+            playsound("messagemusique4.mp3")
+        if Numberforchoose == 4:
+            MessageMusic5 = gTTS(
+                text="Je vous met Du classique pour passer une journée avec 300 de qi", lang=language, slow=False)
+            MessageMusic5.save("messagemusique5.mp3")
+            playsound("messagemusique5.mp3")
+        if Numberforchoose == 5:
+            MessageMusic6 = gTTS(
+                text="Je vous met Du Damso non ténebreux pour commencer la journée", lang=language, slow=False)
+            MessageMusic6.save("messagemusique6.mp3")
+            playsound("messagemusique6.mp3")
+        if Numberforchoose == 6:
+            MessageMusic7 = gTTS(
+                text="Je vous met De la musique de kikoo jap dépressif pour commencer la journée mdr", lang=language,
+                slow=False)
+            MessageMusic7.save("messagemusique7.mp3")
+            playsound("messagemusique7.mp3")
+        if Numberforchoose ==7:
+            MessageMusic8 = gTTS(
+                text=" Je vous met Du son d'anglais bien éclaté pour commencer cette belle matinée", lang=language,
+                slow=False)
+            MessageMusic8.save("messagemusique8.mp3")
+            playsound("messagemusique8.mp3")
+        if Numberforchoose == 8:
+            MessageMusic9 = gTTS(
+                text=" Je vous met Un bon banger joyeux de Damso qui rend heureux", lang=language, slow=False)
+            MessageMusic9.save("messagemusique9.mp3")
+            playsound("messagemusique9.mp3")
+
+
+        if Numberforchoose == 9:
+            MessageMusic10 = gTTS(
+                text=" Je vous met Un son de renoi nrv chakal", lang=language, slow=False)
+            MessageMusic10.save("messagemusique10.mp3")
+            playsound("messagemusique10.mp3")
+        if Numberforchoose == 10:
+            MessageMusic11 = gTTS(
+                text="Spoiler : musique explosive", lang=language, slow=False)
+            MessageMusic11.save("messagemusique11.mp3")
+            playsound("messagemusique11.mp3")
+
+
+
+        playsound(playlist[Numberforchoose])
+
+
+    else:
+        print("not yet")
+        time.sleep(10)
+    if lcltime == alarmb and daysalarmb[day] == 1:
+        playsound("lofi.mp3")
+
+    else:
+        print("not yet b ")
+        time.sleep(10)
